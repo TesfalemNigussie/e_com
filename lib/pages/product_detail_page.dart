@@ -78,146 +78,130 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ],
               ),
-              Expanded(
-                child: DraggableScrollableSheet(
-                  maxChildSize: 0.6,
-                  initialChildSize: 0.3,
-                  minChildSize: 0.3,
-                  builder: (context, scrollController) => Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
+              DraggableScrollableSheet(
+                maxChildSize: 0.6,
+                initialChildSize: 0.3,
+                minChildSize: 0.3,
+                builder: (context, scrollController) => Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    child: Expanded(
-                      child: SingleChildScrollView(
-                        controller: scrollController,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Color:',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.grey.shade800,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                ...List.generate(
-                                  widget.product.colors.length,
-                                  (index) => GestureDetector(
-                                    onTap: () {
-                                      for (var element
-                                          in widget.product.colors) {
-                                        element.isSelected = false;
-                                      }
-                                      setState(() {
-                                        widget.product.selectedColorIndex =
-                                            index;
-                                        widget.product.colors[index]
-                                                .isSelected =
-                                            !widget.product.colors[index]
-                                                .isSelected;
-                                        pageController.jumpToPage(index);
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 25,
-                                      width: 25,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      decoration: BoxDecoration(
-                                        color: Color(widget
-                                            .product.colors[index].colorCode),
-                                        border: Border.all(color: Colors.black),
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      ),
-                                      child: widget
-                                              .product.colors[index].isSelected
-                                          ? const Icon(
-                                              Icons.check,
-                                              size: 12,
-                                            )
-                                          : Container(),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'Size:',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: Colors.grey.shade800,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                ...List.generate(
-                                  widget.product.sized.length,
-                                  (index) => GestureDetector(
-                                    onTap: () {
-                                      for (var element
-                                          in widget.product.sized) {
-                                        element.isSelected = false;
-                                      }
-
-                                      setState(() {
-                                        widget.product.sized[index].isSelected =
-                                            !widget.product.sized[index]
-                                                .isSelected;
-                                      });
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 15),
-                                      decoration: BoxDecoration(
-                                        color: widget
-                                                .product.sized[index].isSelected
-                                            ? const Color(0xFFEC7430)
-                                            : Colors.white,
-                                        border: Border.all(
-                                          color: widget.product.sized[index]
-                                                  .isSelected
-                                              ? const Color(0xFFEC7430)
-                                              : Colors.grey.shade500,
-                                        ),
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      child: Text(
-                                        widget.product.sized[index].sizeCode,
-                                        style: TextStyle(
-                                          color: widget.product.sized[index]
-                                                  .isSelected
-                                              ? Colors.white
-                                              : Colors.grey.shade500,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Color:',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.grey.shade800,
                         ),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          ...List.generate(
+                            widget.product.colors.length,
+                            (index) => GestureDetector(
+                              onTap: () {
+                                for (var element in widget.product.colors) {
+                                  element.isSelected = false;
+                                }
+                                setState(() {
+                                  widget.product.selectedColorIndex = index;
+                                  widget.product.colors[index].isSelected =
+                                      !widget.product.colors[index].isSelected;
+                                  pageController.jumpToPage(index);
+                                });
+                              },
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                decoration: BoxDecoration(
+                                  color: Color(
+                                      widget.product.colors[index].colorCode),
+                                  border: Border.all(color: Colors.black),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: widget.product.colors[index].isSelected
+                                    ? const Icon(
+                                        Icons.check,
+                                        size: 12,
+                                      )
+                                    : Container(),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Size:',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.grey.shade800,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          ...List.generate(
+                            widget.product.sized.length,
+                            (index) => GestureDetector(
+                              onTap: () {
+                                for (var element in widget.product.sized) {
+                                  element.isSelected = false;
+                                }
+
+                                setState(() {
+                                  widget.product.sized[index].isSelected =
+                                      !widget.product.sized[index].isSelected;
+                                });
+                              },
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 15),
+                                decoration: BoxDecoration(
+                                  color: widget.product.sized[index].isSelected
+                                      ? const Color(0xFFEC7430)
+                                      : Colors.white,
+                                  border: Border.all(
+                                    color:
+                                        widget.product.sized[index].isSelected
+                                            ? const Color(0xFFEC7430)
+                                            : Colors.grey.shade500,
+                                  ),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  widget.product.sized[index].sizeCode,
+                                  style: TextStyle(
+                                    color:
+                                        widget.product.sized[index].isSelected
+                                            ? Colors.white
+                                            : Colors.grey.shade500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
