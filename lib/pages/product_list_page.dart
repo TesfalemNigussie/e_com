@@ -41,7 +41,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Row(),
+                      const Row(),
                       Hero(
                         tag: tempProduct[index].id,
                         child: SizedBox(
@@ -51,7 +51,6 @@ class _ProductListPageState extends State<ProductListPage> {
                             autoRotate: true,
                             autoPlay: true,
                             cameraControls: false,
-                            rotationPerSecond: '700%',
                           ),
                         ),
                       ),
@@ -65,7 +64,7 @@ class _ProductListPageState extends State<ProductListPage> {
                     context,
                     product: tempProduct[index],
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 350,
                     width: 500,
                   ),
