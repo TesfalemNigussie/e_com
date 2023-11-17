@@ -50,6 +50,8 @@ class _ProductListPageState extends State<ProductListPage> {
                             ar: false,
                             disableZoom: true,
                             cameraControls: true,
+                            loading: Loading.lazy,
+                            backgroundColor: Colors.white,
                           ),
                         ),
                       ),
@@ -169,17 +171,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 15),
                                           decoration: BoxDecoration(
-                                            color: tempProduct[0]
-                                                    .sized[index]
-                                                    .isSelected
-                                                ? const Color(0xFFEC7430)
-                                                : Colors.white,
+                                            color: Colors.white,
                                             border: Border.all(
-                                              color: tempProduct[0]
-                                                      .sized[index]
-                                                      .isSelected
-                                                  ? const Color(0xFFEC7430)
-                                                  : Colors.grey.shade500,
+                                              color: Colors.grey.shade500,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(4),
@@ -192,8 +186,13 @@ class _ProductListPageState extends State<ProductListPage> {
                                               color: tempProduct[0]
                                                       .sized[index]
                                                       .isSelected
-                                                  ? Colors.white
+                                                  ? Colors.black
                                                   : Colors.grey.shade500,
+                                              fontWeight: tempProduct[0]
+                                                      .sized[index]
+                                                      .isSelected
+                                                  ? FontWeight.bold
+                                                  : FontWeight.normal,
                                             ),
                                           ),
                                         ),
@@ -230,7 +229,7 @@ class _ProductListPageState extends State<ProductListPage> {
                             const Size(double.maxFinite, 60),
                           ),
                           backgroundColor: MaterialStateProperty.all(
-                            const Color(0xFFEC7430),
+                            Colors.white,
                           ),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
@@ -286,11 +285,10 @@ class _ProductListPageState extends State<ProductListPage> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(100),
-                                                        color: Colors.red,
                                                       ),
                                                       child: Icon(
                                                         Icons.close,
-                                                        color: Colors.white,
+                                                        color: Colors.black,
                                                       ),
                                                     ),
                                                   ),
@@ -315,6 +313,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                   ar: false,
                                                   disableZoom: true,
                                                   cameraControls: true,
+                                                  loading: null,
                                                 ),
                                               ),
                                               SizedBox(
@@ -334,7 +333,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       backgroundColor:
                                                           MaterialStateProperty
                                                               .all(
-                                                        const Color(0xFFEC7430),
+                                                        Colors.white,
                                                       ),
                                                       elevation:
                                                           MaterialStateProperty
@@ -381,11 +380,10 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                                   padding: EdgeInsets.all(5),
                                                                                   decoration: BoxDecoration(
                                                                                     borderRadius: BorderRadius.circular(100),
-                                                                                    color: Colors.red,
                                                                                   ),
                                                                                   child: Icon(
                                                                                     Icons.close,
-                                                                                    color: Colors.white,
+                                                                                    color: Colors.black,
                                                                                   ),
                                                                                 ),
                                                                               ),
@@ -435,7 +433,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                                 const Size(140, 55),
                                                                               ),
                                                                               backgroundColor: MaterialStateProperty.all(
-                                                                                const Color(0xFFEC7430),
+                                                                                Colors.white,
                                                                               ),
                                                                               elevation: MaterialStateProperty.all(0),
                                                                               shape: MaterialStateProperty.all(
@@ -451,7 +449,12 @@ class _ProductListPageState extends State<ProductListPage> {
                                                                               _showPurchaseConfirmationDialog(context);
                                                                             },
                                                                             child:
-                                                                                Text('Purchase Now'),
+                                                                                Text(
+                                                                              'Purchase Now',
+                                                                              style: TextStyle(
+                                                                                color: Colors.black,
+                                                                              ),
+                                                                            ),
                                                                           ),
                                                                         ],
                                                                       ),
@@ -462,6 +465,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       'checkout',
                                                       style: TextStyle(
                                                         fontSize: 16,
+                                                        color: Colors.black,
                                                         fontFamily: 'Poppins',
                                                       ),
                                                     ),
@@ -489,6 +493,7 @@ class _ProductListPageState extends State<ProductListPage> {
                           'Add to cart',
                           style: TextStyle(
                             fontSize: 16,
+                            color: Colors.black,
                             fontFamily: 'Poppins',
                           ),
                         ),
@@ -516,7 +521,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   const Size(140, 55),
                 ),
                 backgroundColor: MaterialStateProperty.all(
-                  const Color(0xFFEC7430),
+                  Colors.white,
                 ),
                 elevation: MaterialStateProperty.all(0),
                 shape: MaterialStateProperty.all(
@@ -530,7 +535,12 @@ class _ProductListPageState extends State<ProductListPage> {
                     .pop(); // Close the purchase confirmation dialog
                 // You may want to navigate back to the home page or perform other actions
               },
-              child: Text('Done'),
+              child: Text(
+                'Done',
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
             ),
           ],
         );
