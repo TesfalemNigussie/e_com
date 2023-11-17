@@ -26,17 +26,12 @@ class _ProductListPageState extends State<ProductListPage> {
           itemCount: tempProduct.length,
           allowImplicitScrolling: true,
           controller: PageController(
-            viewportFraction: 0.9,
+            viewportFraction: 0.8,
           ),
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () => ProductDetailPage.push(
-              context,
-              product: tempProduct[index],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
+          itemBuilder: (context, index) => Stack(
+            children: [
+              Center(
+                child: Container(
                   decoration: BoxDecoration(
                     color: cardBackground[index],
                     borderRadius: BorderRadius.circular(20),
@@ -46,73 +41,37 @@ class _ProductListPageState extends State<ProductListPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Row(),
                       Hero(
                         tag: tempProduct[index].id,
                         child: SizedBox(
                           height: 300,
-                          width: 500,
                           child: ModelViewer(
                             src: tempProduct[index].imageUrl,
                             autoRotate: true,
-                            disableZoom: false,
+                            autoPlay: true,
                             cameraControls: false,
                             rotationPerSecond: '700%',
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                tempProduct[index].tag,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey.shade600,
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                              Text(
-                                tempProduct[index].name,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 25,
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                              Text(
-                                '\$${tempProduct[index].price}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 36,
-                                  color: Colors.teal.shade500,
-                                  fontFamily: 'ChakraPetch',
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey.shade300),
-                              color: const Color(0xFFf4f7f9),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              Align(
+                child: InkWell(
+                  onTap: () => ProductDetailPage.push(
+                    context,
+                    product: tempProduct[index],
+                  ),
+                  child: Container(
+                    height: 350,
+                    width: 500,
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),

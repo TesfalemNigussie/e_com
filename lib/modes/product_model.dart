@@ -25,7 +25,7 @@ class ProductModel {
     required this.imageUrl,
   });
 
-  getImageUrl(index) => imageUrl.replaceAll('0', index);
+  getImageUrl(int index) => imageUrl.replaceAll('0', index.toString());
 }
 
 class ColorModel {

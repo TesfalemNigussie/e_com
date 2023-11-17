@@ -13,8 +13,25 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          cartProduct.isEmpty ? Lottie.asset('assets/no_cart.json') : Column(),
+      body: cartProduct.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Lottie.asset(
+                    'assets/animations/no_cart.json',
+                  ),
+                ),
+                const Text(
+                  'You haven\'t added to cart,',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Poppins',
+                  ),
+                )
+              ],
+            )
+          : const Column(),
     );
   }
 }
